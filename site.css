@@ -1,0 +1,88 @@
+﻿
+@import "http://fonts.googleapis.com/css?family=Ubuntu:400,500,300";
+body {
+    margin: 0 auto;
+}
+html {
+    font-family: "Ubuntu",sans-serif;
+}
+header {
+    background: url("images/footer-bg.png") repeat scroll 0 0%, none repeat scroll 0 0 #193441;
+    height: 3em;
+}
+.container {
+    margin: 0 auto;
+    padding: 1em;
+    width: 80%;
+}
+.content {
+    float: left;
+    width: 20%;
+    padding: 2.5%;
+    text-align: justify;
+    font-weight: 200;
+    text-indent: -100000px;
+}
+article {
+    background: none repeat scroll 0 0 #fcfff5;
+    color: #046380;
+    content: "";
+    display: block;
+    min-height: 21.99em;
+    text-align: center;
+    width: 100%;
+}
+article h1 {
+    font-size: 40px;
+    margin: 0.1em auto 0;
+}
+article h2 {
+    color: #a5a59c;
+    font-size: 21px;
+    font-weight: 300;
+}
+article span {
+    background: none repeat scroll 0 0 rgba(25, 52, 65, 0.04);
+    color: #777;
+    display: block;
+    height: 2.7em;
+    margin: 0 auto;
+    padding: 1em;
+    position: relative;
+    width: 30em;
+}
+footer {
+    clear: both;
+    background: url("images/footer-bg.png") repeat scroll 0 0%, none repeat scroll 0 0 #91aa9d;
+    height: 16em;
+    text-align: right;
+}
+.social {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.15);
+    bottom: 0;
+    margin-top: 2.5em;
+    padding: 1.5em;
+    position: relative;
+    text-align: center;
+}
+.social a {
+    color: #193441;
+    margin: 0 1.4em auto;
+    text-align: center;
+    width: 100px;
+}
+.contactme {
+    font-size: 15px;
+    font-weight: 300;
+    margin-top: 1.5em;
+    text-align: center;
+    vertical-align: baseline;
+}
+.contactme i {
+    margin-right: 15px;
+}
+.contactme span {
+    color: #002f2f;
+}
+i {
+}
