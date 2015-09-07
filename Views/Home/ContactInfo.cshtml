@@ -1,0 +1,20 @@
+﻿@using SinglePageCMS.Models
+@{
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+
+<address>
+    <img src="~/Content/images/template-assets/map-pin.png" alt="Marine Food Address">
+    <p>
+        @Html.Raw(db.Registeries.Find("Address").Value)
+    </p>
+    <img src="~/Content/images/template-assets/phone-icon.png" alt="Marine Food Address">
+    <p>
+        <span>Phone: @db.Registeries.Find("PhoneNumber").Value</span>
+        @*<span>Fax: @db.Registeries.Find("FaxNumber")</span>*@
+    </p>
+    <img src="~/Content/images/template-assets/mail-icon2.png" alt="Marine Food Address">
+    <p>
+        <span>@db.Registeries.Find("EmailAddress").Value</span>
+    </p>
+</address>

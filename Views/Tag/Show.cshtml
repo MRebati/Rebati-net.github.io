@@ -1,0 +1,21 @@
+﻿@if (ViewBag.Items != null)
+{
+    foreach (var item in ViewBag.Items)
+    {
+        using (Html.BeginForm("Delete", "Tag"))
+        {
+            <label>@item</label>
+            <input type="hidden" value="@item" name="item"/>
+            <input type="submit" value="Delete" />
+        }
+    }
+}
+@using (Html.BeginForm("Add","Tag"))
+{
+    @Html.TextBox("item")
+    <input type="submit" value="Add"/>
+}
+@using (Html.BeginForm("DeleteAll", "Tag"))
+{
+    <input type="submit" value="DeleteAll" />
+}

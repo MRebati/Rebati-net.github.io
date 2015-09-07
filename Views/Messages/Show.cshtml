@@ -1,0 +1,123 @@
+﻿@model IEnumerable<SinglePageCMS.Models.Message>
+
+
+
+
+@*<div class="col-sm-6">
+    <section class="panel" style="width:540px !important">
+        <header class="panel-heading">
+            Contextual classes
+        </header>
+        <table class="table" style="width:540px !important;direction: rtl ">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Column heading</th>
+                    <th>Column heading</th>
+                    <th>Column heading</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="active">
+                    <td>1</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="success">
+                    <td>2</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="warning">
+                    <td>3</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+                <tr class="danger">
+                    <td>4</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</div>*@
+
+
+
+
+
+
+<section class="panel" style="width:540px !important">
+    <header class="panel-heading">
+        <a class="insight-btn" id="showBtn">ایجاد</a>
+        <p style="text-align:left; margin-top:-10px;">پیام ها و گزارش ها</p>
+    </header>
+
+    <table class="table" style="width:100%;">
+        <thead>
+            <tr>
+                <td>نام</td>
+                <td>زمان</td>
+                <td>موضوع</td>
+                <td>نوع</td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    if (Convert.ToInt16(item.Priority) == 1)
+                    {
+                        <tr class="danger">
+                            <td>@item.Name</td>
+                            <td>@item.Date.ToString("yyyy MMMM dd")</td>
+                            <td>@item.Subject</td>
+                            <td>@item.Type</td>
+                        </tr>
+                    }
+
+                    if (Convert.ToInt16(item.Priority) == 2)
+                    {
+                        <tr class="warning">
+                            <td>@item.Name</td>
+                            <td>@item.Date.ToString("yyyy MMMM dd")</td>
+                            <td>@item.Subject</td>
+                            <td>@item.Type</td>
+                        </tr>
+                    }
+
+                    if (Convert.ToInt16(item.Priority) == 3)
+                    {
+                        <tr class="success">
+                            <td>@item.Name</td>
+                            <td>@item.Date.ToString("yyyy MMMM dd")</td>
+                            <td>@item.Subject</td>
+                            <td>@item.Type</td>
+                        </tr>
+                    }
+
+                    if (Convert.ToInt16(item.Priority) == 0)
+                    {
+                        <tr class="active">
+                            <td>@item.Name</td>
+                            <td>@item.Date.ToString("yyyy MMMM dd")</td>
+                            <td>@item.Subject</td>
+                            <td>@item.Type</td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+
+</section>
+
+<div id="sendmessageJQ" style="display:none;">
+    @Html.Action("Send")
+</div>

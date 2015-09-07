@@ -1,0 +1,25 @@
+.custom-bg1 {
+    background: url(../images/custom-bg/custom-bg1.jpg);
+    background: url('../images/custom-bg/custom-bg1.jpg');
+}
+.custom-bg2{
+	background: url(../images/custom-bg/custom-bg2.jpg);
+}
+.custom-bg3{
+	background: url(../images/custom-bg/custom-bg4.jpg);
+}
+.custom-bg4{
+	background: url(../images/custom-bg/custom-bg5.jpg);
+}
+.custom-bg5{
+	background: url(../images/custom-bg/custom-bg7.jpg);
+}
+.custom-bg6{
+	background: url(../images/custom-bg/custom-bg8.jpg);
+}
+.custom-bg7{
+	background: url(../images/custom-bg/custom-bg9.jpg);
+}
+.custom-bg8{
+	background: url(../images/custom-bg/custom-bg10.jpg);
+}

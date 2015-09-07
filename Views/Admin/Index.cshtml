@@ -1,0 +1,244 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>داشبورد</h1>
+
+<div class="chart-box">
+    <a class="insight-btn" href="/Insight/Details">نمایش جزء یه جزء آمار</a>
+    @*<header class="panel-heading" style="width:500px;">
+            <p style="text-align:left;">آمار و گزارش گیری ها</p>
+        </header>*@
+    <section class="chart-row">
+        <canvas id="line" height="200" width="500"></canvas>
+    </section>
+    <section class="chart-row">
+        <div class="chart-item">
+            <canvas id="radar" height="200" width="200"></canvas>
+        </div>
+        <div class="chart-item">
+            <canvas id="polarArea" height="200" width="200"></canvas>
+        </div>
+    </section>
+</div>
+
+<div class="row">
+    @Html.Action("Show", "Messages")
+</div>
+
+@*<section id="insight">
+        <div class="convas-holder">
+            <convas id="line"></convas>
+        </div>
+        <div class="convas-holder">
+            <convas id="radarweek"></convas>
+        </div>
+        <div id="canvas-holder" style="width:200px">
+            <canvas id="polar-year" width="100" height="100" />
+        </div>
+        <div class="convas-holder">
+            <table>
+                <tr></tr>
+            </table>
+        </div>
+    </section>*@
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+
+
+            var doughnutData = [
+                {
+                    value: 30,
+                    color: "#F7464A"
+                },
+                {
+                    value: 50,
+                    color: "#46BFBD"
+                },
+                {
+                    value: 100,
+                    color: "#FDB45C"
+                },
+                {
+                    value: 40,
+                    color: "#949FB1"
+                },
+                {
+                    value: 120,
+                    color: "#4D5360"
+                }
+
+            ];
+            var lineChartData = {
+                labels: ["1", "2", "3", "4", "5", "6", "7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"],
+                datasets: [{
+                        label: "آمار امروز",
+                        fillColor: "rgba(220,220,220,0.2)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        pointColor: "rgba(220,220,220,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: [@ViewBag.yesterdayh1,@ViewBag.yesterdayh2,@ViewBag.yesterdayh3,@ViewBag.yesterdayh4,@ViewBag.yesterdayh5,@ViewBag.yesterdayh6,@ViewBag.yesterdayh7,@ViewBag.yesterdayh8,@ViewBag.yesterdayh9,@ViewBag.yesterdayh10,@ViewBag.yesterdayh11,@ViewBag.yesterdayh12,@ViewBag.yesterdayh13,@ViewBag.yesterdayh14,@ViewBag.yesterdayh15,@ViewBag.yesterdayh16,@ViewBag.yesterdayh17,@ViewBag.yesterdayh18,@ViewBag.yesterdayh19,@ViewBag.yesterdayh20,@ViewBag.yesterdayh21,@ViewBag.yesterdayh22,@ViewBag.yesterdayh23,@ViewBag.yesterdayh0]
+                    }
+                    ,{
+                        label: "آمار دیروز",
+                        fillColor: "rgba(151,187,205,0.2)",
+                        strokeColor: "rgba(151,187,205,1)",
+                        pointColor: "rgba(151,187,205,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(151,187,205,1)",
+                        data: [@ViewBag.h1,@ViewBag.h2,@ViewBag.h3,@ViewBag.h4,@ViewBag.h5,@ViewBag.h6,@ViewBag.h7,@ViewBag.h8,@ViewBag.h9,@ViewBag.h10,@ViewBag.h11,@ViewBag.h12,@ViewBag.h13,@ViewBag.h14,@ViewBag.h15,@ViewBag.h16,@ViewBag.h17,@ViewBag.h18,@ViewBag.h19,@ViewBag.h20,@ViewBag.h21,@ViewBag.h22,@ViewBag.h23,@ViewBag.h0]
+                    }
+
+                ]
+
+            };
+
+            var barChartData = {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [
+                    {
+                        fillColor: "rgba(220,220,220,0.5)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        data: [65, 59, 90, 81, 56, 55, 40]
+                    },
+                    {
+                        fillColor: "rgba(151,187,205,0.5)",
+                        strokeColor: "rgba(151,187,205,1)",
+                        data: [28, 48, 40, 19, 96, 27, 100]
+                    }
+                ]
+
+            };
+            var chartData = [
+                {
+                    value: @ViewBag.farvardin,
+                    color: "#F7464A",
+                    highlight: "#FF5A5E",
+                    label: "فروردین ماه"
+                },
+                {
+                    value: @ViewBag.ordibehesht,
+                    color: "#46BFBD",
+                    highlight: "#5AD3D1",
+                    label: "اردیبهشت ماه"
+                },
+                {
+                    value: @ViewBag.khordad,
+                    color: "#FDB45C",
+                    highlight: "#FFC870",
+                    label: "خرداد ماه"
+                },
+                {
+                    value: @ViewBag.tir,
+                    color: "#949FB1",
+                    highlight: "#A8B3C5",
+                    label: "تیر ماه"
+                },
+                {
+                    value: @ViewBag.mordad,
+                    color: "#4D5360",
+                    highlight: "#616774",
+                    label: "مرداد ماه"
+                },
+                {
+                    value: @ViewBag.shahrivar,
+                    color: "#46BFBD",
+                    highlight: "#5AD3D1",
+                    label: "شهریور ماه"
+                },
+                {
+                    value: @ViewBag.mehr,
+                    color: "#FDB45C",
+                    highlight: "#FFC870",
+                    label: "مهر ماه"
+                },
+                {
+                    value: @ViewBag.aban,
+                    color: "#949FB1",
+                    highlight: "#A8B3C5",
+                    label: "آبان ماه"
+                },
+                {
+                    value: @ViewBag.azar,
+                    color: "#46BFBD",
+                    highlight: "#5AD3D1",
+                    label: "آذر ماه"
+                },
+                {
+                    value: @ViewBag.dey,
+                    color: "#FDB45C",
+                    highlight: "#FFC870",
+                    label: "دی ماه"
+                },
+                {
+                    value: @ViewBag.bahman,
+                    color: "#949FB1",
+                    highlight: "#A8B3C5",
+                    label: "بهمن ماه"
+                },
+                {
+                    value: @ViewBag.esfand,
+                    color: "#949FB1",
+                    highlight: "#A8B3C5",
+                    label: "اسفند ماه"
+                }
+            ];
+            var radarChartData = {
+                labels: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "آدینه"],
+                datasets: [
+                    {
+                        fillColor: "rgba(220,220,220,0.5)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        pointColor: "rgba(220,220,220,1)",
+                        pointStrokeColor: "#fff",
+                        data: [@ViewBag.saturday, @ViewBag.sunday, @ViewBag.monday, @ViewBag.tuesday,@ViewBag.wednesday, @ViewBag.thursday,@ViewBag.friday]
+                    }
+                ]
+
+            };
+            new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData, {
+                showScale: false,
+                pointDot : true
+            });
+            new Chart(document.getElementById("radar").getContext("2d")).Radar(radarChartData, {
+                scaleFontColor: "#ffffff"
+            });
+            new Chart(document.getElementById("polarArea").getContext("2d")).PolarArea(chartData);
+
+
+        });
+    </script>
+
+
+    <script>
+        $('#showBtn').on("click", function() {
+            $('#sendmessageJQ').show();
+        });
+
+        $('#sendmessage-close').on("click", function() {
+            $('#sendmessageJQ').hide();
+        });
+
+        $('.sendmessage-submit').on("click", function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Send", "Messages")',
+                dataType: "html",
+                data: $('#sendmessage-form').serialize(),
+                success: function (result) {
+                    //$("#sendmessage-form").html(result);
+                    alert("Your Message Has been saved.");
+                },
+                error: function () {
+                }
+            });
+        });
+    </script>
+}

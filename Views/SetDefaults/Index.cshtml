@@ -1,0 +1,288 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            //$(function load() {
+            //    LoadStep1();
+            //});
+            $('#loading').hide();
+        });
+
+        var $loading = $('#loading').hide();
+        $(document)
+          .ajaxStart(function () {
+              $('.ajaxBox').empty();
+              $loading.show();
+          })
+          .ajaxStop(function () {
+              $loading.hide();
+          });
+
+        //$(document).ajaxStart(function () {
+        //    $('.ajaxBox').empty();
+        //    $(".loading").show();
+        //});
+
+        //$(document).ajaxComplete(function () {
+        //    $(".loading").hide();
+        //});
+
+        function loading() {
+            $('#loading').show();
+        }
+
+        function complete() {
+            $('#loading').hide();
+        }
+
+        function LoadStep1() {
+            var myDiv = $('.ajaxBox');
+            $.ajax({
+                url: '@Url.Action("Step1", "SetDefaults")',
+                type: 'GET',
+                cache: false,
+                context: myDiv,
+                success: function (result) {
+                    $('.ajaxBox').html(result);
+                }
+            });
+        }
+
+        function LoadStep2() {
+            var myDiv = $('.ajaxBox');
+            $.ajax({
+                url: '@Url.Action("Step2", "SetDefaults")',
+                type: 'GET',
+                cache: false,
+                context: myDiv,
+                success: function (result) {
+                    $('.ajaxBox').html(result);
+                }
+            });
+        }
+
+        function LoadStep3() {
+            var myDiv = $('.ajaxBox');
+            $.ajax({
+                url: '@Url.Action("Step3", "SetDefaults")',
+                type: 'GET',
+                cache: false,
+                context: myDiv,
+                success: function (result) {
+                    $('.ajaxBox').html(result);
+                }
+            });
+        }
+
+        function LoadStep4() {
+            var myDiv = $('.ajaxBox');
+            $.ajax({
+                url: '@Url.Action("Step4", "SetDefaults")',
+                type: 'GET',
+                cache: false,
+                context: myDiv,
+                success: function (result) {
+                    $('.ajaxBox').html(result);
+                }
+            });
+        }
+
+        function LoadStep5() {
+            var myDiv = $('.ajaxBox');
+            $.ajax({
+                url: '@Url.Action("Step5", "SetDefaults")',
+                type: 'GET',
+                cache: false,
+                context: myDiv,
+                success: function (result) {
+                    $('.ajaxBox').html(result);
+                }
+            });
+        }
+
+        function LoadStep6() {
+            var myDiv = $('.ajaxBox');
+            $.ajax({
+                url: '@Url.Action("Step6", "SetDefaults")',
+                type: 'GET',
+                cache: false,
+                context: myDiv,
+                success: function (result) {
+                    $('.ajaxBox').html(result);
+                }
+            });
+        }
+
+        function LoadStep7() {
+            var myDiv = $('.ajaxBox');
+            $.ajax({
+                url: '@Url.Action("Step7", "SetDefaults")',
+                type: 'GET',
+                cache: false,
+                context: myDiv,
+                success: function (result) {
+                    $('.ajaxBox').html(result);
+                }
+            });
+        }
+
+        function LoadStep8() {
+            var myDiv = $('.ajaxBox');
+            $.ajax({
+                url: '@Url.Action("Step8", "SetDefaults")',
+                type: 'GET',
+                cache: false,
+                context: myDiv,
+                success: function (result) {
+                    $('.ajaxBox').html(result);
+                }
+            });
+        }
+
+        function LoadStep9() {
+            var myDiv = $('.ajaxBox');
+            $.ajax({
+                url: '@Url.Action("Step9", "SetDefaults")',
+                type: 'GET',
+                cache: false,
+                context: myDiv,
+                success: function (result) {
+                    $('.ajaxBox').html(result);
+                }
+            });
+        }
+
+        function LoadStep10() {
+            var myDiv = $('.ajaxBox');
+            $.ajax({
+                url: '@Url.Action("Step10", "SetDefaults")',
+                type: 'GET',
+                cache: false,
+                onLoading: loading,
+                context: myDiv,
+                success: function (result) {
+                    complete();
+                    $('.ajaxBox').html(result);
+                }
+            });
+        }
+
+
+
+
+
+    </script>
+}
+
+<h1>تنظیمات اصلی سایت</h1>
+
+<section class="setdefault">
+    @if (ViewBag.appname != null)
+    {
+        <button id="step1" onclick="LoadStep1();" class="caution">نام سایت</button>
+        @*@Html.ActionLink("نام سایت", "Step1", new { @class = "caution" })*@
+    }
+    else
+    {
+        <button id="step1" onclick="LoadStep1();">نام سایت</button>
+        @*@Html.ActionLink("نام سایت", "Step1")*@
+    }
+    @if (ViewBag.email != null)
+    {
+        <button id="step2" class="caution" onclick="LoadStep2();">آدرس ایمیل</button>
+        @*@Html.ActionLink("آدرس ایمیل", "Step2", null, new { @class = "caution" })*@
+    }
+    else
+    {
+        <button id="step2" onclick="LoadStep2();">آدرس ایمیل</button>
+        @*@Html.ActionLink("آدرس ایمیل", "Step2")*@
+    }
+    @if (ViewBag.address != null)
+    {
+        <button id="step3" onclick="LoadStep3();" class="caution">آدرس</button>
+        @*@Html.ActionLink("آدرس", "Step3", null, new { @class = "caution" })*@
+    }
+    else
+    {
+        <button onclick="LoadStep3();" id="step3">آدرس</button>
+        @*@Html.ActionLink("آدرس", "Step3")*@
+    }
+    @if (ViewBag.phonenumber != null)
+    {
+        <button id="step4" onclick="LoadStep4();" class="caution">شماره تماس</button>
+        @*@Html.ActionLink("شماره تماس", "Step4", null, new { @class = "caution" })*@
+    }
+    else
+    {
+        <button onclick="LoadStep4();" id="step4">شماره تماس</button>
+        @*@Html.ActionLink("شماره تماس", "Step4")*@
+    }
+    @if (ViewBag.logo != null)
+    {
+        <button onclick="LoadStep5();" id="step5" class="caution">لوگو سایت</button>
+        @*@Html.ActionLink("لوگو سایت", "Step5", null, new { @class = "caution" })*@
+    }
+    else
+    {
+        <button onclick="LoadStep5();" id="step5">لوگو سایت</button>
+        @*@Html.ActionLink("لوگو سایت", "Step5")*@
+    }
+    @if (ViewBag.googleId != null)
+    {
+        <button id="step6" onclick="LoadStep6();" class="caution">آی دی گوگل</button>
+        @*@Html.ActionLink("آی دی گوگل", "Step6", null, new { @class = "caution" })*@
+    }
+    else
+    {
+        <button onclick="LoadStep6();" id="step6">آی دی گوگل</button>
+        @*@Html.ActionLink("آی دی گوگل", "Step6")*@
+    }
+    @if (ViewBag.fb != null)
+    {
+        <button id="step7" onclick="LoadStep7();" class="caution">آدرس فیس بوک</button>
+        @*@Html.ActionLink("آدرس فیس بوک", "Step7", null, new { @class = "caution" })*@
+    }
+    else
+    {
+        <button id="step7" onclick="LoadStep7();">آدرس فیس بوک</button>
+        @*@Html.ActionLink("آدرس فیس بوک", "Step7")*@
+    }
+    @if (ViewBag.insta != null)
+    {
+        <button id="step8" onclick="LoadStep8();" class="caution">آدرس اینستاگرام</button>
+        @*@Html.ActionLink("آدرس اینستاگرام", "Step8", null, new { @class = "caution" })*@
+    }
+    else
+    {
+        <button onclick="LoadStep8();" id="step8">آدرس اینستاگرام</button>
+        @*@Html.ActionLink("آدرس اینستاگرام", "Step8")*@
+    }
+    @if (ViewBag.googleUrl != null)
+    {
+        <button id="step9" class="caution" onclick="LoadStep9();">آدرس گوگل پلاس</button>
+        @*@Html.ActionLink("آدرس گوگل پلاس", "Step9", null, new { @class = "caution" })*@
+    }
+    else
+    {
+        <button id="step9" onclick="LoadStep9();">آدرس گوگل پلاس</button>
+        @*@Html.ActionLink("آدرس گوگل پلاس", "Step9")*@
+    }
+    @if (ViewBag.publish != null)
+    {
+        <button id="step10" class="caution" onclick="LoadStep10();">انتشار سایت</button>
+        @*@Html.ActionLink("انتشار سایت", "Step10", null, new { @class = "caution" })*@
+    }
+    else
+    {
+        <button id="step10" onclick="LoadStep10();">انتشار سایت</button>
+        @*@Html.ActionLink("انتشار سایت", "Step10")*@
+    }
+</section>
+
+<div id="loading"><i class="fa fa-spin fa-spinner fa-2x"></i></div>
+<section class="ajaxBox"></section>

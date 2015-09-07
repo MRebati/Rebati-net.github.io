@@ -1,0 +1,16 @@
+﻿
+<div class="col-md-6 wow fadeInDown">
+    <div class="contact-form-contaienr">
+        <div class="section-title">
+            <h1><span>Contact</span> Us</h1>
+        </div>
+        @using (Html.BeginForm("IndexContactForm", "Home", FormMethod.Post, new { id = "contact-form" }))
+        {
+            <input type="text" id="name" name="name" placeholder="Name*" required>
+            <input type="email" id="email" name="email" placeholder="Email*" required>
+            <textarea id="message" name="message" rows="6" placeholder="Message" required></textarea>
+            <button type="submit">Send Message</button>
+        }
+        <div id="form-messages"></div>
+    </div><!-- /contact-form-container -->
+</div>

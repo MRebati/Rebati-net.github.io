@@ -1,0 +1,47 @@
+﻿@using SinglePageCMS.Models
+@{
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+<section class="gallery dark-bg" id="gallery">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 wow fadeInDown">
+                <header class="section-title">
+                    <h1><span>گالری</span>ما</h1>
+                    <p>@db.Registeries.Find("GalleryDescribtion").Value</p>
+                </header>
+            </div><!-- /col-md-8 -->
+            <div class="col-md-12 wow fadeInDown">
+                <div class="gallery-filter-container">
+                    <ul class="gallery-filter">
+                        <li class="filter active" data-filter="all"><span>همه</span></li>
+                        @foreach (var item in db.Galleries)
+                        {
+                            <li class="filter" data-filter=".@item.Id"><span>@item.Name</span></li>
+                        }
+                    </ul>
+                </div><!-- /gellery-filter-container -->
+            </div><!-- /col-md-12 -->
+        </div><!-- /row -->
+    </div><!-- /container -->
+    <div class="gallery-items-container wow fadeInDown">
+        <ul class="clearfix">
+            @foreach (var item in db.GalleryItems)
+            {
+                <li class="overlay-container mix @item.Gallery.Id">
+                    <img src="@item.MediaUrl" alt="@item.Name - @item.Describtion">
+                    <div class="overlay">
+                        <div class="overlay-details">
+                            <h3>@item.Name</h3>
+                            <p>@item.Describtion</p>
+                        </div><!-- /overlay-details -->
+                        <div class="buttons-container">
+                            <a href="@item.LinkUrl" class="button-link"></a>
+                            <a href="@item.MediaUrl" class="button-zoom popup-trigger"></a>
+                        </div><!-- /buttons-container -->
+                    </div><!-- /overlay -->
+                </li>
+            }
+        </ul>
+    </div><!-- /gallery-items-container -->
+</section>

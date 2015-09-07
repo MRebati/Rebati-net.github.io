@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "مدیریت فایل ها";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section Scripts{
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+        $(document).ready(function() {
+            $(".sendmessage-back").hide();
+        });
+        $("#add-folder-form").submit(function (event) {
+            event.preventDefault();
+            //    // ...
+            //});
+            //$('#submit-addfolder').onclick(function (e) {
+            //    e.preventDefault();
+            //    e.stopImmediatePropagation();
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AddFolder", "Image")',
+                dataType: "html",
+                data: $('#add-folder-form').serialize(),
+                success: function () {
+                    $.ajax({
+                        type: "GET",
+                        url: '@Url.Action("Folders")',
+                        success: function (data) {
+                            $('.ajax-container').empty();
+                            $('.ajax-container').html(data);
+                        },
+                        error: function () {
+                            alert("An Error Occured");
+                        }
+                    });
+                },
+                error: function () {
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $("#close-pop-up").click(function() {
+            $("#pop-up-window").empty();
+            $(".sendmessage-back").hide();
+        });
+
+        var $loading = $('#loading').hide();
+        $(document)
+            .ajaxStart(function () {
+                $('.ajaxBox').empty();
+                $loading.show();
+            })
+            .ajaxStop(function () {
+                $loading.hide();
+            });
+        $('.add-folder').click(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("AddFolder", "Image")',
+                //dataType: "html",
+                //data: $('#contactform').serialize(),
+                success: function (result) {
+                    $('.ajax-container').empty();
+                    $('.ajax-container').html(result);
+                },
+                error: function () {
+                }
+            });
+        });
+
+        //$('#submit-addfolder').click(function (e) {
+        //    e.preventDefault();
+        //    e.stopImmediatePropagation();
+
+        function ShowImageTriggered() {
+            $("#ajax-container").empty();
+            $("#loading").show();
+        }
+
+        function Success() {
+            $("#loading").hide();
+            $(".sendmessage-back").show();
+        }
+
+        function ImageSuccess() {
+            $("#loading").hide();
+        }
+
+        function DeleteTriggered() {
+            $("#ajax-container").show();
+        }
+
+        function LoadShowFiles() {
+            var myDiv = $('.ajaxBox');
+            $.ajax({
+                url: '@Url.Action("Step1", "SetDefaults")',
+                type: 'GET',
+                cache: false,
+                //context: myDiv,
+                success: function (result) {
+                    $('.ajax-container').empty();
+                    $('.ajax-container').html(result);
+                }
+            });
+        }
+    </script>
+}
+<h1>@ViewBag.Title</h1>
+<div id="loading"><i class="fa fa-spin fa-spinner fa-2x"></i></div>
+@*@Ajax.ActionLink("Add Folder",
+        "AddFolder",
+        new AjaxOptions { UpdateTargetId = "ajax-container" }
+    )*@
+
+
+<div id="ajax-container">
+    <div class="top-bar">
+        @Ajax.ActionLink("ایجاد", "AddFolder", null, new AjaxOptions()
+            {
+                OnBegin = "",
+                OnSuccess = "Success",
+                UpdateTargetId = "pop-up-window",
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "Get"
+            }, new { @class = "add-folder" })
+            @Html.Action("Folders")
+        </div>
+    </div>
+    <div class="sendmessage-back">
+        <div id="close-pop-up"><i class="fa fa-close fa-2x"></i></div>
+        <div class="pop-up" id="pop-up-window">
+
+        </div>
+    </div>

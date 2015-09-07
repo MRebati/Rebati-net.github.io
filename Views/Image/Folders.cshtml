@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SinglePageCMS.Models.ImageCategory>
+
+<div class="folder-box">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    نام پوشه
+                </th>
+                <th>
+                    زمان بروز رسانی
+                </th>
+                <th>
+                    زمان ایجاد
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Ajax.ActionLink(item.Name, "ShowImage", new {id = item.Id}, new AjaxOptions()
+                        {
+                            OnBegin = "ShowImageTriggered",
+                            OnSuccess = "ImageSuccess",
+                            UpdateTargetId = "ajax-container",
+                            InsertionMode = InsertionMode.Replace,
+                            HttpMethod = "Get"
+                        })
+                    </td>
+                    <td>
+                        @item.Modified.ToShortDateString()
+                    </td>
+                    <td>
+                        @item.CreateDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @Ajax.ActionLink("ویرایش نام","EditFolder",new AjaxOptions()
+                        {
+                            OnBegin = "Show-pop-up-Triggered",
+                            OnSuccess = "pop-up-Success",
+                            UpdateTargetId = "pop-up-window",
+                            InsertionMode = InsertionMode.Replace,
+                            HttpMethod = "Get"
+                        })
+                        &nbsp;
+                        |
+                        &nbsp;
+                        @Ajax.ActionLink("حذف پوشه", "DeleteFolder", new AjaxOptions()
+                        {
+                            OnBegin = "show-pop-up-Triggered",
+                            OnSuccess = "pop-up-Success",
+                            UpdateTargetId = "pop-up-window",
+                            InsertionMode = InsertionMode.Replace,
+                            HttpMethod = "Get"
+                        })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

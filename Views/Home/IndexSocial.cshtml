@@ -1,0 +1,38 @@
+﻿@using SinglePageCMS.Models
+@{
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+<div class="socials-container">
+    <ul>
+        
+        @if (db.Registeries.Find("FacebookUrl") != null)
+        {
+            <li class="wow fadeInLeft"><a href="@db.Registeries.Find("FacebookUrl").Value"><i class="fa fa-facebook"></i></a></li>
+        }
+        
+        @if (db.Registeries.Find("TwitterUrl") != null)
+        {
+            <li class="wow fadeInLeft"><a href="@db.Registeries.Find("TwitterUrl").Value"><i class="fa fa-twitter"></i></a></li>
+        }
+        
+        @if (db.Registeries.Find("SkypeUrl") != null)
+        {
+            <li class="wow fadeInLeft"><a href="@db.Registeries.Find("SkypeUrl").Value"><i class="fa fa-skype"></i></a></li>
+        }
+        
+        @if (db.Registeries.Find("GoogleUrl") != null)
+        {
+            <li class="wow fadeInLeft"><a href="@db.Registeries.Find("GoogleUrl").Value"><i class="fa fa-google-plus"></i></a></li>
+        }
+        
+        @if (db.Registeries.Find("LinkedinUrl") != null)
+        {
+            <li class="wow fadeInLeft"><a href="@db.Registeries.Find("LinkedinUrl").Value"><i class="fa fa-linkedin"></i></a></li>
+        }
+        
+        @if (db.Registeries.Find("InstagramUrl") != null)
+        {
+            <li class="wow fadeInLeft"><a href="@db.Registeries.Find("FacebookUrl").Value"><i class="fa fa-instagram"></i></a></li>
+        }
+    </ul>
+</div>

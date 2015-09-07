@@ -1,0 +1,166 @@
+﻿@using SinglePageCMS.Models;
+@{
+    ApplicationDbContext db = new ApplicationDbContext();
+}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@db.Registeries.Find("ApplicationName").Value - @ViewBag.Title</title>
+    <meta name="description" content="@ViewBag.Describtion">
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#23292c"> <!-- Android 5.0 Tab Color -->
+    <link rel="shortcut icon" href="~/favicon.ico">
+    <!-- Web Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700,300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
+
+    <!-- Icon Fonts -->
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/fontello.css" rel="stylesheet" />
+
+    <!-- Plugins CSS -->
+
+    <link href="~/Content/Index/rev-slider-settings.css" rel="stylesheet" />
+    <link href="~/Content/Index/animate.css" rel="stylesheet" />
+    <link href="~/Content/Index/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/Index/magnific-popup.css" rel="stylesheet" />
+
+    <!-- Template CSS -->
+    <link href="~/Content/Index/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Index/reset.css" rel="stylesheet" />
+    <link href="~/Content/Index/main.css" rel="stylesheet" />
+
+    <!-- Demo Purpose CSS -->
+    <link href="~/Content/Index/custom-bg.css" rel="stylesheet" />
+
+    <!-- Head JS Libraries -->
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="http://maps.google.com/maps/api/js"></script><!-- REQUIRED FOR GOOGLE MAP -->
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Start mobile-nav -->
+    <div class="mobile-nav-container clearfix">
+        <div class="main-nav-trigger mobile-nav-trigger">
+            <a href="#"></a>
+        </div>
+    </div>
+    <!-- End mobile-nav -->
+    <!-- Start main-nav-trigger -->
+    <div class="main-nav-trigger">
+        <a href="#">Menu</a>
+    </div>
+    <!-- End main-nav-trigger -->
+    <!-- Start main-nav -->
+    <div class="main-nav-container dark">
+        <div class="main-nav-inner">
+            <div class="logo-container">
+                <a href="#">
+                    <img src="~/Content/images/logo/logo.png" alt="@db.Registeries.Find("ApplicationName").Value">
+                </a>
+            </div><!-- /logo-container -->
+            @Html.Action("Menu", "Home")
+            <div class="tweets-container">
+                <div class="twitter-logo">
+                    <i class="fa fa-twitter"></i>
+                </div><!-- /twitter-logo -->
+                <div class="tweet"></div>
+            </div><!-- /tweets-container -->
+            <div class="socials-container">
+                <ul>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                </ul>
+            </div><!-- /socials-container -->
+            <div class="copyright">
+                <p>&copy; @DateTime.Now @db.Registeries.Find("ApplicationName").Value</p>
+                <p>تمامی حقوق محفوظ است.</p>
+            </div><!-- /copyright -->
+        </div><!-- /main-nav-inner -->
+    </div><!-- /main-nav-container -->
+    <!-- End main-nav -->
+    <!-- Start wrapper -->
+    <div class="wrapper">
+
+        @RenderSection("Head", required: false)
+        
+        @RenderBody()
+
+        @Html.Action("Map", "Home")
+
+        <footer class="main-footer dark-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 align-center">
+                        <div class="logo-container wow fadeInLeft">
+                            <a href="#">
+                                <img src="~/Content/images/logo/logo-light-blue.png" alt="Marine Food Logo">
+                            </a>
+                        </div><!-- /logo-container -->
+                        @Html.Action("IndexSocial", "Home")<!-- /socials-container -->
+                    </div><!-- /col-md-3 -->
+                    @Html.Action("ContactUs", "Home")
+                    <!-- /col-md-6 -->
+                    <div class="col-md-3 wow fadeInRight">
+                        <div class="address-container">
+                            @Html.Action("ContactInfo", "Home")
+                            @* This is the Section for the Address *@
+                        </div><!-- /address-container -->
+                    </div><!-- /col-md-3 -->
+                    <div class="copyright col-md-12 wow fadeInUp" data-wow-delay="0.7s">
+                        <p>&copy; @DateTime.Now.Year @db.Registeries.Find("ApplicationName").Value . تمامی حقوق محفوظ است.</p>
+                    </div><!-- /copyright -->
+                </div><!-- /row -->
+            </div><!-- /container -->
+        </footer>
+
+    </div><!-- /wrapper -->
+    <!-- End wrapper -->
+
+    <script src="~/Scripts/Index/vendor/jquery-2.1.3.min.js"></script>
+    <script src="~/Scripts/Index/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Scripts/Index/jquery.themepunch.tools.min.js"></script>
+    <script src="~/Scripts/Index/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/Scripts/Index/retina.min.js"></script>
+    <script src="~/Scripts/Index/SmoothScroll.js"></script>
+    <script src="~/Scripts/Index/owl.carousel.min.js"></script>
+    <script src="~/Scripts/Index/jquery.mixitup.min.js"></script>
+    <script src="~/Scripts/Index/jquery.magnific-popup.min.js"></script>
+    <script src="~/Scripts/Index/jquery.stellar.min.js"></script>
+    <script src="~/Scripts/Index/jquery.nicescroll.min.js"></script>
+    <script src="~/Scripts/Index/jquery.nav.js"></script>
+    <script src="~/Scripts/Index/cd-google-map.js"></script>
+    <script src="~/Scripts/Index/wow.min.js"></script>
+    <script src="~/Scripts/Index/tweetie.min.js"></script>
+    <script src="~/Scripts/Index/jquery.scrollme.min.js"></script>
+    <script src="~/Scripts/Index/plugins.js"></script>
+    <script src="~/Scripts/Index/main.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery('.main-slider').revolution(
+             {
+                 delay: 9000,
+                 startwidth: 1170,
+                 startheight: 960,
+                 hideThumbs: 10,
+                 fullScreen: 'on',
+                 navigationStyle: 'preview4',
+                 parallax: 'scroll',
+                 parallaxLevels: [100, -80]
+             });
+        });
+    </script>
+
+</body>
+</html>

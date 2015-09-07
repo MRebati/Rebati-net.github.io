@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SinglePageCMS.Models.IndexAbout>
+
+<section class="team" id="about">
+    <div class="row">
+        <div class="col-md-6 wow fadeInLeft">
+            <div class="col-md-8 pull-right">
+                <header class="section-title wow fadeInLeft">
+                    <h1><span>درباره</span>ما</h1>
+                </header>
+                <div class="members-details-container">
+                    @foreach (var item in Model)
+                    {
+                        <div class="member">
+                            <div class="member-info clearfix">
+                                <figure class="member-thumb">
+                                    <img src="@item.UserImageUrl">
+                                </figure>
+                                <h3>@item.Name</h3>
+                                <p class="member-post">@item.Position</p>
+                            </div><!-- /member-info -->
+                            <div class="member-bio">
+                                <p class="italic">@item.ShortDescribtion</p>
+                                <p>@item.LongDescribtion </p>
+                            </div><!-- /member-bio -->
+                        </div><!-- /member -->
+                    }
+                </div><!-- /members-details-container -->
+                <div class="team-carousel-nav"></div>
+            </div><!-- /col-md-8 -->
+        </div><!-- /col-md-6 -->
+        <div class="members-images-container col-md-6 pull-right wow fadeInRight">
+            @foreach (var item in Model)
+            {
+                <div class="member">
+                    <div class="member-image">
+                        <figure>
+                            <img src="@item.RightImageUrl">
+                        </figure>
+                    </div>
+                </div>
+                <!-- /member -->
+            }
+        </div><!-- /members-images-con -->
+    </div><!-- /row -->
+</section>

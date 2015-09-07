@@ -1,0 +1,41 @@
+﻿@model SinglePageCMS.Models.ContactUs
+
+<div class="col-md-6 wow fadeInDown">
+    <div class="contact-form-contaienr">
+        <div class="section-title">
+            <h1><span>Contact</span> Us</h1>
+        </div>
+        @using (Html.BeginForm("ContactUs", "Home", FormMethod.Post, new { id = "contact-form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <input type="text" id="Name" name="Name" placeholder="Name*" required>
+            <input type="email" id="Email" name="Email" placeholder="Email*" required>
+            <textarea id="Message" name="Message" rows="6" placeholder="Message" required></textarea>
+            <button id="submit-contact" type="submit">Send Message</button>
+        }
+        <div id="form-messages"></div>
+    </div><!-- /contact-form-container -->
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#submit-contact').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("ContactUs", "Home")',
+                    dataType: "html",
+                    data: $('#contact-form').serialize(),
+                    success: function (result) {
+                        $("#contact-form").html(result);
+                    },
+                    error: function () {
+                    }
+                });
+            });
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

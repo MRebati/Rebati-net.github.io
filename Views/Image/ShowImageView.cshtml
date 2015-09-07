@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SinglePageCMS.Models.Image>
+
+@{
+    ViewBag.Title = "ShowImageView";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>مدریت فایل ها < نمایش اطلاعات @ViewBag.Title</h1>
+
+<p>
+    @Ajax.ActionLink("آبلود عکس", "AddImage",new AjaxOptions()
+    {
+        OnSuccess = "SuccessAddImage",
+        OnBegin = "Loading",
+        UpdateTargetId = "pop-up-window"
+    })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageCategory.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Path)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageCategory.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Path)
+        </td>
+        <td>
+            @Html.ActionLink("حذف", "DeleteImage", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

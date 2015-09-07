@@ -1,0 +1,78 @@
+﻿@using System.Globalization
+@model IEnumerable<SinglePageCMS.Models.Content>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    PersianCalendar pc = new PersianCalendar();
+}
+
+<h1>فهرست مطالب سایت</h1>
+
+<p class="create-new">
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" style="width:100%;">
+    <thead>
+        <tr>
+
+            <th>
+                موضوع
+            </th>
+            <th>
+                تصویر
+            </th>
+            <th>
+                خلاصه
+            </th>
+            <th>
+                زمان ایجاد
+            </th>
+            <th>
+                بروزرسانی
+            </th>
+            <th>
+                دسته
+            </th>
+            <th>
+                آدرس
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+
+
+                <td>
+                    <a href="@Html.DisplayFor(modelItem => item.ImageUrl)">نمایش تصویر</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Summery)
+                </td>
+                <td>
+                    @pc.GetYear(item.CreateTime) / @pc.GetMonth(item.CreateTime) / @pc.GetDayOfMonth(item.CreateTime)
+                </td>
+                <td>
+                    @pc.GetYear(item.Modified) / @pc.GetMonth(item.Modified) / @pc.GetDayOfMonth(item.Modified)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Slug)
+                </td>
+                <td>
+                    @Html.ActionLink("ویرایش", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("جزئیات", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("حذف", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

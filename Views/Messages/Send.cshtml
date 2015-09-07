@@ -1,0 +1,44 @@
+﻿@model SinglePageCMS.Models.Message
+
+<div class="sendmessage-back">
+    <div class="sendmessage-main">
+        <span class="fa-stack fa-lg" id="sendmessage-close">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-close fa-stack-1x fa-inverse"></i>
+        </span>
+        @using (Html.BeginForm("Send", "Messages", FormMethod.Post, new{ @id = "sendmessage-form" }))
+        {
+                @Html.ValidationSummary(true)
+                <section class="sendmessage-row">
+                    @Html.TextBoxFor(model => model.Subject, new{ @placeholder = "موضوع" })
+                </section>
+                <section class="sendmessage-row">
+                    @Html.TextAreaFor(model => model.Content, new{ @placeholder = "متن پیام را وارد کنید." })
+                </section>
+                <section class="sendmessage-row">
+                    <div class="sendmessage-item">
+                        @Html.TextBoxFor(model => model.Name,new{ @placeholder = "نام فرستنده" })
+                    </div>
+                    <div class="sendmessage-item">
+                        <select name="Type" id="Type" data-val="true" data-val-required="تکمیل این قسمت الزامیست">
+                            <option value="">نوع</option>
+                            <option value="گزارش">گزارش</option>
+                            <option value="پیام">پیام</option>
+                        </select>
+                    </div>
+                    <div class="sendmessage-item">
+                        <select name="Priority" id="Priority">
+                            <option>درصد اهمیت</option>
+                            <option value="1">بسیار مهم</option>
+                            <option value="2">مهم</option>
+                            <option value="3">معمولی</option>
+                            <option value="0">کم اهمیت</option>
+                        </select>
+                    </div>
+                    <div class="sendmessage-item">
+                        <input type="submit" class="sendmessage-submit" value="ارسال" />
+                    </div>
+                </section>
+        }
+    </div>
+</div>

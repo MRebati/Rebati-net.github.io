@@ -1,0 +1,67 @@
+﻿@model SinglePageCMS.Models.IndexAbout
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IndexAbout</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortDescribtion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShortDescribtion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LongDescribtion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LongDescribtion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserImageUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserImageUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RightImageUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RightImageUrl)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
